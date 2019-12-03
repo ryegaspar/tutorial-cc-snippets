@@ -4,8 +4,15 @@ module.exports = {
 			fontFamily: {
 				header: ['Rubik', 'sans-serif']
 			}
+		},
+
+		rotate: {
+			'45': '40deg',
+			'-45': '-40deg'
 		}
 	},
 	variants: {},
-	plugins: []
+	plugins: [
+		require('tailwindcss-transforms')({})
+	]
 };
