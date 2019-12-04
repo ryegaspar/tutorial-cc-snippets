@@ -78,6 +78,12 @@
 			}
 		},
 
+		head() {
+			return {
+				title: 'Sign in'
+			}
+		},
+
 		methods: {
 			async submit() {
 				try {
