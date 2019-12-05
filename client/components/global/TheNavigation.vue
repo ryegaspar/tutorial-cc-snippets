@@ -57,7 +57,7 @@
 				<ul class="lg:h-24 lg:flex items-center ml-auto text-right w-full lg:w-auto">
 					<template v-if="$auth.loggedIn">
 						<li>
-							<nuxt-link :to="{name: 'index'}"
+							<nuxt-link :to="{name: 'dashboard'}"
 									   class="text-lg text-gray-700 lg:py-8 lg:px-4"
 							>
 								Dashboard
