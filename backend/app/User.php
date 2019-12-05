@@ -54,4 +54,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function snippets()
+    {
+        return $this->hasMany(Snippet::class)
+            ->latest();
+    }
 }
