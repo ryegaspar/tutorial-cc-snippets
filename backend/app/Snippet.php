@@ -27,6 +27,16 @@ class Snippet extends Model
         });
     }
 
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function steps()
     {
         return $this->hasMany(Step::class)
