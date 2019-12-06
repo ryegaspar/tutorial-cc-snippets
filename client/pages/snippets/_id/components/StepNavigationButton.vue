@@ -13,7 +13,6 @@
 		props: {
 			step: {
 				required: true,
-				type: Object
 			}
 		}
 	}
