@@ -123,18 +123,10 @@
 							Steps
 						</h1>
 
-						<ul>
-							<li v-for="(step, index) in orderedStepsAsc"
-								:key="index"
-								class="mb-1"
-							>
-								<nuxt-link :to="{}"
-										   :class="{'font-bold': currentStep.uuid === step.uuid}"
-								>
-									{{ index + 1 }}. {{ step.title || 'Untitled step' }}
-								</nuxt-link>
-							</li>
-						</ul>
+						<step-list :steps="orderedStepsAsc"
+								   :currentStep="currentStep"
+						>
+						</step-list>
 					</div>
 
 					<div class="text-gray-500 text-sm">
@@ -164,6 +156,8 @@
 	import {orderBy as _orderBy} from 'lodash';
 	import {debounce as _debounce} from 'lodash';
 
+	import StepList from "../components/StepList";
+
 	export default {
 		data() {
 			return {
@@ -176,6 +170,10 @@
 			return {
 				title: `Editing ${this.snippet.title}` || 'Untitled snippet'
 			}
+		},
+
+		components: {
+			StepList
 		},
 
 		// this will run on the server side before it is available, instead of this.$axios
