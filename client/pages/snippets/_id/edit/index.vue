@@ -59,7 +59,8 @@
 								 viewBox="0 0 24 24"
 								 class="fill-current text-white h-6 w-6"
 							>
-								<path d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/>
+								<path
+									d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/>
 							</svg>
 						</nuxt-link>
 
@@ -96,7 +97,8 @@
 								 viewBox="0 0 24 24"
 								 class="fill-current text-white h-6 w-6"
 							>
-								<path d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/>
+								<path
+									d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/>
 							</svg>
 						</nuxt-link>
 
@@ -109,7 +111,8 @@
 								 viewBox="0 0 24 24"
 								 class="fill-current text-white h-6 w-6"
 							>
-								<path d="M8 6V4c0-1.1.9-2 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8H3a1 1 0 1 1 0-2h5zM6 8v12h12V8H6zm8-2V4h-4v2h4zm-4 4a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1z"/>
+								<path
+									d="M8 6V4c0-1.1.9-2 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8H3a1 1 0 1 1 0-2h5zM6 8v12h12V8H6zm8-2V4h-4v2h4zm-4 4a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1z"/>
 							</svg>
 						</nuxt-link>
 					</div>
@@ -158,8 +161,8 @@
 </template>
 
 <script>
-	import { orderBy as _orderBy } from 'lodash';
-	import { debounce as _debounce } from 'lodash';
+	import {orderBy as _orderBy} from 'lodash';
+	import {debounce as _debounce} from 'lodash';
 
 	export default {
 		data() {
@@ -200,7 +203,18 @@
 		watch: {
 			'snippet.title': {
 				handler: _debounce(async function (title) {
-					await this.$axios.$patch(`snippets/${this.snippet.uuid}`, {title})
+					await this.$axios.$patch(`snippets/${this.snippet.uuid}`, {title});
+				}, 500)
+			},
+
+			currentStep: {
+				deep: true, //listen to all properties
+
+				handler: _debounce(async function (step) {
+					await this.$axios.$patch(`snippets/${this.snippet.uuid}/steps/${step.uuid}`, {
+						title: step.title,
+						body: step.body
+					});
 				}, 500)
 			}
 		}
