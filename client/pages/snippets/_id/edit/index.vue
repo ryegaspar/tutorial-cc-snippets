@@ -159,12 +159,23 @@
 
 <script>
 	import { orderBy as _orderBy } from 'lodash';
+	import { debounce as _debounce } from 'lodash';
 
 	export default {
 		data() {
 			return {
 				snippet: null,
 				steps: []
+			}
+		},
+
+		// this will run on the server side before it is available, instead of this.$axios
+		async asyncData({app, params}) {
+			let snippet = await app.$axios.$get(`snippets/${params.id}`);
+
+			return {
+				snippet: snippet.data,
+				steps: snippet.data.steps.data
 			}
 		},
 
@@ -186,13 +197,11 @@
 			}
 		},
 
-		// this will run on the server side before it is available, instead of this.$axios
-		async asyncData({app, params}) {
-			let snippet = await app.$axios.$get(`snippets/${params.id}`);
-
-			return {
-				snippet: snippet.data,
-				steps: snippet.data.steps.data
+		watch: {
+			'snippet.title': {
+				handler: _debounce(async function (title) {
+					await this.$axios.$patch(`snippets/${this.snippet.uuid}`, {title})
+				}, 500)
 			}
 		}
 	}
