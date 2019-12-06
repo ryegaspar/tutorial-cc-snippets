@@ -15,5 +15,4 @@ class StepController extends Controller
 
         $step->update($request->only('title', 'body'));
     }
-
 }

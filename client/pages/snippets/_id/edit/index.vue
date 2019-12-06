@@ -131,7 +131,7 @@
 								<nuxt-link :to="{}"
 										   :class="{'font-bold': currentStep.uuid === step.uuid}"
 								>
-									{{ index + 1 }}. {{ step.title }}
+									{{ index + 1 }}. {{ step.title || 'Untitled step' }}
 								</nuxt-link>
 							</li>
 						</ul>
@@ -169,6 +169,12 @@
 			return {
 				snippet: null,
 				steps: []
+			}
+		},
+
+		head() {
+			return {
+				title: `Editing ${this.snippet.title}` || 'Untitled snippet'
 			}
 		},
 
