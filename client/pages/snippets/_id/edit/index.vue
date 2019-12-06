@@ -38,9 +38,7 @@
 			<div class="flex flex-wrap lg:flex-no-wrap">
 				<div class="w-full lg:w-8/12 lg:mr-16 flex flex-wrap lg:flex-no-wrap justify-between items-start mb-8">
 					<div class="flex flex-row lg:flex-col mr-2 order-first">
-						<nuxt-link :to="{}"
-								   class="block mb-2 p-3 bg-blue-500 rounded-lg mr-2 lg:mr-0"
-								   title="Previous step"
+						<step-navigation-button :step="previousStep"
 						>
 							<svg xmlns="http://www.w3.org/2000/svg"
 								 viewBox="0 0 24 24"
@@ -49,8 +47,7 @@
 								<path
 									d="M5.41 11H21a1 1 0 0 1 0 2H5.41l5.3 5.3a1 1 0 0 1-1.42 1.4l-7-7a1 1 0 0 1 0-1.4l7-7a1 1 0 0 1 1.42 1.4L5.4 11z"/>
 							</svg>
-						</nuxt-link>
-
+						</step-navigation-button>
 						<nuxt-link :to="{}"
 								   class="block mb-2 p-3 bg-blue-500 rounded-lg mr-2 lg:mr-0"
 								   title="Add step before"
@@ -76,10 +73,7 @@
 						</div>
 					</div>
 					<div class="flex flex-row-reverse lg:flex-col order-first lg:order-last">
-						<nuxt-link :to="{}"
-								   class="block mb-2 p-3 bg-blue-500 rounded-lg"
-								   title="Next step"
-						>
+						<step-navigation-button :step="nextStep">
 							<svg xmlns="http://www.w3.org/2000/svg"
 								 viewBox="0 0 24 24"
 								 class="fill-current text-white h-6 w-6"
@@ -87,7 +81,7 @@
 								<path
 									d="M18.59 13H3a1 1 0 0 1 0-2h15.59l-5.3-5.3a1 1 0 1 1 1.42-1.4l7 7a1 1 0 0 1 0 1.4l-7 7a1 1 0 0 1-1.42-1.4l5.3-5.3z"/>
 							</svg>
-						</nuxt-link>
+						</step-navigation-button>
 
 						<nuxt-link :to="{}"
 								   class="block mb-2 p-3 bg-blue-500 rounded-lg mr-2 lg:mr-0"
@@ -157,6 +151,7 @@
 	import {debounce as _debounce} from 'lodash';
 
 	import StepList from "../components/StepList";
+	import StepNavigationButton from "../components/StepNavigationButton";
 
 	export default {
 		data() {
@@ -173,7 +168,8 @@
 		},
 
 		components: {
-			StepList
+			StepList,
+			StepNavigationButton
 		},
 
 		// this will run on the server side before it is available, instead of this.$axios
@@ -193,8 +189,26 @@
 				)
 			},
 
+			orderedStepsDesc() {
+				return _orderBy(
+					this.steps, 'order', 'desc'
+				)
+			},
+
 			firstStep() {
 				return this.orderedStepsAsc[0];
+			},
+
+			nextStep() {
+				return this.orderedStepsAsc.find(
+					(s) => s.order > this.currentStep.order
+				) || null;
+			},
+
+			previousStep() {
+				return this.orderedStepsDesc.find(
+					(s) => s.order < this.currentStep.order
+				) || null;
 			},
 
 			currentStep() {
