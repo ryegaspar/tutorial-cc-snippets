@@ -21,7 +21,7 @@
 
 		<div class="container">
 			<h1 class="text-xl text-gray-600 font-medium mb-6">
-				1/5. {{ currentStep.title }}
+				{{ currentStepIndex + 1 }}/{{ steps.length }}. {{ currentStep.title }}
 			</h1>
 
 			<div class="flex flex-wrap lg:flex-no-wrap">
@@ -174,6 +174,13 @@
 				return this.orderedStepsAsc.find(
 					(s) => s.uuid === this.$route.query.step
 				) || this.firstStep;
+			},
+
+			currentStepIndex() {
+				return this.orderedStepsAsc.map(
+					(s) => s.uuid
+				)
+					.indexOf(this.currentStep.uuid)
 			}
 		},
 	}

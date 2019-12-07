@@ -23,12 +23,12 @@
 
 		<div class="container">
 			<div class="flex items-center mb-6">
-				<div class="text-xl text-gray-600 font-medium mr-3">
-					1/5.
+				<div class="text-xl text-gray-600 font-medium mr-3 font-header">
+					{{ currentStepIndex + 1 }}/{{ steps.length }}.
 				</div>
 
 				<input type="text"
-					   class="text-xl text-gray-600 font-medium py-1 p-2 bg-transparent border-2 rounded border-dashed border-gray-400 w-full"
+					   class="text-xl text-gray-600 font-medium py-1 p-2 bg-transparent border-2 rounded border-dashed border-gray-400 w-full font-header"
 					   value=""
 					   placeholder="Untitled step"
 					   v-model="currentStep.title"
@@ -215,6 +215,13 @@
 				return this.orderedStepsAsc.find(
 					(s) => s.uuid === this.$route.query.step
 				) || this.firstStep;
+			},
+
+			currentStepIndex() {
+				return this.orderedStepsAsc.map(
+					(s) => s.uuid
+				)
+					.indexOf(this.currentStep.uuid)
 			}
 		},
 
