@@ -23,12 +23,20 @@ class StepController extends Controller
 
         $step = $snippet->steps()->create(array_merge(
             $request->only('title', 'body'), [
-            'order' => 1
+            'order' => $this->getOrder($request)
         ]));
 
         return fractal()
             ->item($step)
             ->transformWith(new StepTransformer)
             ->toArray();
+    }
+
+    protected function getOrder(Request $request)
+    {
+        return Step::where('uuid', $request->before)
+            ->orWhere('uuid', $request->after)
+            ->first()
+            ->{($request->before ? 'before' : 'after') . 'Order'}();
     }
 }
