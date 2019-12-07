@@ -175,11 +175,11 @@
 
 		methods: {
 			goToStep(step) {
-				this.$router(push({
+				this.$router.push({
 					query: {
 						step: step.uuid
 					}
-				}));
+				});
 			},
 
 			handleStepAdded(step) {

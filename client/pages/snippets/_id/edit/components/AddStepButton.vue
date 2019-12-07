@@ -1,5 +1,6 @@
 <template>
-	<a @click.prevent="addStep"
+	<a href="#"
+	   @click.prevent="addStep"
 	   class="block mb-2 p-3 bg-blue-500 rounded-lg mr-2 lg:mr-0"
 	   :title="`Add step ${position}`"
 	>
@@ -34,7 +35,9 @@
 
 		methods: {
 			async addStep() {
-				let response = await this.$axios.$post(`snippets/${this.snippet.uuid}/steps`);
+				let response = await this.$axios.$post(`snippets/${this.snippet.uuid}/steps`, {
+					[this.position]: this.currentStep.uuid
+				});
 
 				this.$emit('added', response.data);
 			}
