@@ -48,19 +48,11 @@
 									d="M5.41 11H21a1 1 0 0 1 0 2H5.41l5.3 5.3a1 1 0 0 1-1.42 1.4l-7-7a1 1 0 0 1 0-1.4l7-7a1 1 0 0 1 1.42 1.4L5.4 11z"/>
 							</svg>
 						</step-navigation-button>
-						<nuxt-link :to="{}"
-								   class="block mb-2 p-3 bg-blue-500 rounded-lg mr-2 lg:mr-0"
-								   title="Add step before"
-						>
-							<svg xmlns="http://www.w3.org/2000/svg"
-								 viewBox="0 0 24 24"
-								 class="fill-current text-white h-6 w-6"
-							>
-								<path
-									d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/>
-							</svg>
-						</nuxt-link>
-
+						<add-step-button :snippet="snippet"
+										 :currentStep="currentStep"
+										 position="before"
+										 @added="handleStepAdded"
+						/>
 					</div>
 
 					<div class="w-full lg:mr-2">
@@ -83,19 +75,11 @@
 							</svg>
 						</step-navigation-button>
 
-						<nuxt-link :to="{}"
-								   class="block mb-2 p-3 bg-blue-500 rounded-lg mr-2 lg:mr-0"
-								   title="Add step after"
-						>
-							<svg xmlns="http://www.w3.org/2000/svg"
-								 viewBox="0 0 24 24"
-								 class="fill-current text-white h-6 w-6"
-							>
-								<path
-									d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/>
-							</svg>
-						</nuxt-link>
-
+						<add-step-button :snippet="snippet"
+										 :currentStep="currentStep"
+										 position="after"
+										 @added="handleStepAdded"
+						/>
 
 						<nuxt-link :to="{}"
 								   class="block mb-2 p-3 bg-blue-500 rounded-lg mr-2 lg:mr-0"
@@ -151,6 +135,7 @@
 
 	import StepList from "../components/StepList";
 	import StepNavigationButton from "../components/StepNavigationButton";
+	import AddStepButton from "./components/AddStepButton";
 
 	import browseSnippet from "@/mixins/snippets/browseSnippet";
 
@@ -174,7 +159,8 @@
 
 		components: {
 			StepList,
-			StepNavigationButton
+			StepNavigationButton,
+			AddStepButton
 		},
 
 		// this will run on the server side before it is available, instead of this.$axios
@@ -184,6 +170,21 @@
 			return {
 				snippet: snippet.data,
 				steps: snippet.data.steps.data
+			}
+		},
+
+		methods: {
+			goToStep(step) {
+				this.$router(push({
+					query: {
+						step: step.uuid
+					}
+				}));
+			},
+
+			handleStepAdded(step) {
+				this.steps.push(step);
+				this.goToStep(step);
 			}
 		},
 
