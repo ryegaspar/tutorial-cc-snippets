@@ -61,6 +61,7 @@
 												step: currentStep.uuid
 											}
 										}"
+								   v-if="snippet.user.data.owner"
 								   class="block mb-2 p-3 bg-blue-500 rounded-lg order-first lg:order-last mr-2 lg:mr-0"
 								   title="Edit step"
 						>
