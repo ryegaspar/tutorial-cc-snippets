@@ -61,7 +61,7 @@
 						>
 						</textarea>
 						<div class="bg-white p-8 rounded-lg text-gray-600">
-							Markdown content
+							<step-markdown :value="currentStep.body"/>
 						</div>
 					</div>
 					<div class="flex flex-row-reverse lg:flex-col order-first lg:order-last">
@@ -164,6 +164,7 @@
 	import StepNavigationButton from "../components/StepNavigationButton";
 	import AddStepButton from "./components/AddStepButton";
 	import DeleteStepButton from "./components/DeleteStepButton";
+	import StepMarkdown from "../../../../components/snippets/StepMarkdown";
 
 	import browseSnippet from "@/mixins/snippets/browseSnippet";
 
@@ -191,7 +192,8 @@
 			StepList,
 			StepNavigationButton,
 			AddStepButton,
-			DeleteStepButton
+			DeleteStepButton,
+			StepMarkdown
 		},
 
 		// this will run on the server side before it is available, instead of this.$axios
