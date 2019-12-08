@@ -15,12 +15,12 @@ class SnippetController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:api'])
-            ->only('store');
+            ->only('store', 'update');
     }
 
     public function show(Snippet $snippet)
     {
-        //TODO: authorize
+        $this->authorize('show', $snippet);
 
         return fractal()
             ->item($snippet)
@@ -49,7 +49,7 @@ class SnippetController extends Controller
 
     public function update(Snippet $snippet, Request $request)
     {
-        //TODO: autorize
+        $this->authorize('update', $snippet);
 
         $this->validate($request, [
             'title'     => 'nullable',

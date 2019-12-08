@@ -53,4 +53,9 @@ class Step extends Model
 
         return ($this->order + $adjacent->order) / 2;
     }
+
+    public function snippet()
+    {
+        return belongsTo(Snippet::class);
+    }
 }

@@ -33,6 +33,11 @@ class Snippet extends Model
         return 'uuid';
     }
 
+    public function isPublic()
+    {
+        return $this->is_public;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
