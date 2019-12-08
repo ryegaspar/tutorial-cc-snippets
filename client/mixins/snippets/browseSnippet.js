@@ -1,4 +1,5 @@
 import {orderBy as _orderBy} from 'lodash';
+import hotkeys from "hotkeys-js";
 
 export default {
 	computed: {
@@ -43,4 +44,35 @@ export default {
 				.indexOf(this.currentStep.uuid)
 		}
 	},
+
+	mounted() {
+		this.registerKeyboardShortcuts();
+	},
+
+	methods: {
+		goToStep(step) {
+			this.$router.push({
+				query: {
+					step: step.uuid
+				}
+			});
+		},
+
+		registerKeyboardShortcuts() {
+			hotkeys('ctrl+shift+left, ctrl+shift+right', (event, handler) => {
+				switch (handler.key) {
+					case 'ctrl+shift+left':
+						if (this.previousStep) {
+							this.goToStep(this.previousStep);
+						}
+						break;
+					case 'ctrl+shift+right':
+						if (this.nextStep) {
+							this.goToStep(this.nextStep);
+						}
+						break;
+				}
+			})
+		}
+	}
 }

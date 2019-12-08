@@ -56,6 +56,6 @@ class Step extends Model
 
     public function snippet()
     {
-        return belongsTo(Snippet::class);
+        return $this->belongsTo(Snippet::class);
     }
 }
