@@ -96,8 +96,22 @@
 
 						<step-list :steps="orderedStepsAsc"
 								   :currentStep="currentStep"
-						>
-						</step-list>
+						/>
+					</div>
+
+					<div class="border-t-2 border-gray-300 py-6">
+						<h1 class="text-xl text-gray-600 font-medium mb-6">
+							Publishing
+						</h1>
+
+						<div class="text-gray-500 text-sm mb-6">
+							<template v-if="lastSaved">
+								Last save at {{ lastSavedFormatted }}
+							</template>
+							<template v-else>
+								No changes saved in this session yet
+							</template>
+						</div>
 					</div>
 
 					<div class="text-gray-500 text-sm">
@@ -125,6 +139,7 @@
 
 <script>
 	import {debounce as _debounce} from 'lodash';
+	import moment from 'moment';
 
 	import StepList from "../components/StepList";
 	import StepNavigationButton from "../components/StepNavigationButton";
@@ -137,7 +152,9 @@
 		data() {
 			return {
 				snippet: null,
-				steps: []
+				steps: [],
+
+				lastSaved: null,
 			}
 		},
 
@@ -168,7 +185,17 @@
 			}
 		},
 
+		computed: {
+			lastSavedFormatted() {
+				return moment(this.lastSaved).format('hh:mm:ss');
+			}
+		},
+
 		methods: {
+			touchLastSaved() {
+				this.lastSaved = moment.now();
+			},
+
 			goToStep(step) {
 				this.$router.push({
 					query: {
@@ -197,6 +224,8 @@
 			'snippet.title': {
 				handler: _debounce(async function (title) {
 					await this.$axios.$patch(`snippets/${this.snippet.uuid}`, {title});
+
+					this.touchLastSaved();
 				}, 500)
 			},
 
@@ -208,6 +237,8 @@
 						title: step.title,
 						body: step.body
 					});
+
+					this.touchLastSaved();
 				}, 500)
 			}
 		}
