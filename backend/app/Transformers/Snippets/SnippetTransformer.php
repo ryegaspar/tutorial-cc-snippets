@@ -40,6 +40,7 @@ class SnippetTransformer extends TransformerAbstract
             'uuid'        => $snippet->uuid,
             'title'       => $snippet->title ?: '',
             'steps_count' => $snippet->steps->count(),
+            'is_public'   => $snippet->is_public
         ];
     }
 
@@ -55,7 +56,7 @@ class SnippetTransformer extends TransformerAbstract
 
     public function includeUser(Snippet $snippet)
     {
-        return $this->primitive('user', function() use ($snippet) {
+        return $this->primitive('user', function () use ($snippet) {
             return [
                 'data' => [
                     'owner' => $snippet->user_id === optional(auth()->user())->id

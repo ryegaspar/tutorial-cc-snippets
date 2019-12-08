@@ -17,6 +17,7 @@ class CreateSnippetsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->index();
             $table->uuid('uuid');
+            $table->boolean('is_public')->default(false);
             $table->string('title')->nullable();
             $table->timestamps();
 

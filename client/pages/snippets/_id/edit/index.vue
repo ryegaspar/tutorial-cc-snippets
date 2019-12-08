@@ -112,6 +112,25 @@
 								No changes saved in this session yet
 							</template>
 						</div>
+
+						<div class="flex items-baseline">
+							<input type="checkbox"
+								   name="pubic"
+								   id="public"
+								   class="mr-2"
+								   v-model="snippet.is_public"
+							/>
+
+							<div>
+								<label for="public" class="text-gray-600 font-medium">
+									Make this snippet public
+								</label>
+
+								<div class="text-gray-500 text-sm">
+									Don't worry, you can change this later.
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div class="text-gray-500 text-sm">
@@ -224,6 +243,14 @@
 			'snippet.title': {
 				handler: _debounce(async function (title) {
 					await this.$axios.$patch(`snippets/${this.snippet.uuid}`, {title});
+
+					this.touchLastSaved();
+				}, 500)
+			},
+
+			'snippet.is_public': {
+				handler: _debounce(async function (is_public) {
+					await this.$axios.$patch(`snippets/${this.snippet.uuid}`, {is_public});
 
 					this.touchLastSaved();
 				}, 500)
