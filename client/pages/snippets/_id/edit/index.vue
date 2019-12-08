@@ -81,18 +81,11 @@
 										 @added="handleStepAdded"
 						/>
 
-						<nuxt-link :to="{}"
-								   class="block mb-2 p-3 bg-blue-500 rounded-lg mr-2 lg:mr-0"
-								   title="Delete step"
-						>
-							<svg xmlns="http://www.w3.org/2000/svg"
-								 viewBox="0 0 24 24"
-								 class="fill-current text-white h-6 w-6"
-							>
-								<path
-									d="M8 6V4c0-1.1.9-2 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8H3a1 1 0 1 1 0-2h5zM6 8v12h12V8H6zm8-2V4h-4v2h4zm-4 4a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0v-6a1 1 0 0 1 1-1z"/>
-							</svg>
-						</nuxt-link>
+						<delete-step-button :snippet="snippet"
+											:step="currentStep"
+											v-if="steps.length > 1"
+											@deleted="handleStepDeleted"
+						/>
 					</div>
 				</div>
 				<div class="w-full lg:w-4/12">
@@ -136,6 +129,7 @@
 	import StepList from "../components/StepList";
 	import StepNavigationButton from "../components/StepNavigationButton";
 	import AddStepButton from "./components/AddStepButton";
+	import DeleteStepButton from "./components/DeleteStepButton";
 
 	import browseSnippet from "@/mixins/snippets/browseSnippet";
 
@@ -160,7 +154,8 @@
 		components: {
 			StepList,
 			StepNavigationButton,
-			AddStepButton
+			AddStepButton,
+			DeleteStepButton
 		},
 
 		// this will run on the server side before it is available, instead of this.$axios
@@ -185,6 +180,16 @@
 			handleStepAdded(step) {
 				this.steps.push(step);
 				this.goToStep(step);
+			},
+
+			handleStepDeleted(step) {
+				let previousStep = this.previousStep;
+
+				this.steps = this.steps.filter((s) => {
+					return s.uuid !== step.uuid
+				});
+
+				this.goToStep(previousStep || this.firstStep)
 			}
 		},
 

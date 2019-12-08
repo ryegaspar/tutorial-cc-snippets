@@ -17,6 +17,17 @@ class StepController extends Controller
         $step->update($request->only('title', 'body'));
     }
 
+    public function destroy(Snippet $snippet, Step $step)
+    {
+        //TODO: authorize
+
+        if ($snippet->steps->count() === 1) {
+            return response(null, 400);
+        }
+
+        $step->delete();
+    }
+
     public function store(Snippet $snippet, Request $request)
     {
         //TODO: authorize
