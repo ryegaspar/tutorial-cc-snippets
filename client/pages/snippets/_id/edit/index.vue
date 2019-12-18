@@ -56,13 +56,9 @@
 					</div>
 
 					<div class="w-full lg:mr-2">
-						<textarea class="w-full mb-6 border-dashed border-2 border-gray-400 rounded-lg"
-								  v-model="currentStep.body"
-						>
-						</textarea>
-						<div class="bg-white p-8 rounded-lg text-gray-600">
-							<step-markdown :value="currentStep.body"/>
-						</div>
+						<step-editor :step="currentStep"
+									 v-model="currentStep.body"
+						/>
 					</div>
 					<div class="flex flex-row-reverse lg:flex-col order-first lg:order-last">
 						<step-navigation-button :step="nextStep">
@@ -164,7 +160,7 @@
 	import StepNavigationButton from "../components/StepNavigationButton";
 	import AddStepButton from "./components/AddStepButton";
 	import DeleteStepButton from "./components/DeleteStepButton";
-	import StepMarkdown from "../../../../components/snippets/StepMarkdown";
+	import StepEditor from "./components/StepEditor";
 
 	import browseSnippet from "@/mixins/snippets/browseSnippet";
 
@@ -193,7 +189,7 @@
 			StepNavigationButton,
 			AddStepButton,
 			DeleteStepButton,
-			StepMarkdown
+			StepEditor
 		},
 
 		// this will run on the server side before it is available, instead of this.$axios
