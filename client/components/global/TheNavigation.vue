@@ -39,7 +39,7 @@
 			>
 				<ul class="lg:h-24 lg:flex items-center w-full lg:w-auto">
 					<li>
-						<nuxt-link :to="{name: 'index'}"
+						<nuxt-link :to="{name: 'browse'}"
 								   class="text-lg text-gray-700 lg:py-8 lg:px-4"
 						>
 							Browse
