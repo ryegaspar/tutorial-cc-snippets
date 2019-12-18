@@ -46,7 +46,16 @@
 			let CodeMirror = require('codemirror');
 
 			this.codemirror = CodeMirror.fromTextArea(this.$refs.textarea, {
-
+				indentUnit: 2,
+				indentWithTabs: false,
+				smartIndent: true,
+				lineWrapping: true,
+				lineNumbers: false,
+				scrollbarStyle: null,
+				extraKeys: {
+					Tab: (codemirror) => codemirror.execCommand('indentMore'),
+					'Shift-Tab': (codemirror) => codemirror.execCommand('indentLess'),
+				}
 			});
 
 			this.document.setValue(this.step.body);
