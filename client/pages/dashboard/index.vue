@@ -15,6 +15,7 @@
 		<dashboard-snippet-card v-for="snippet in snippets"
 								:key="snippet.uuid"
 								:snippet="snippet"
+								@deleted="removeSnippet"
 		/>
 	</div>
 </template>
@@ -51,6 +52,10 @@
 						id: snippet.data.uid
 					}
 				})
+			},
+
+			removeSnippet(snippet) {
+				this.snippets = this.snippets.filter((s) => s.uuid !== snippet.uuid);
 			}
 		}
 
