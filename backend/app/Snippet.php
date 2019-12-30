@@ -5,9 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 class Snippet extends Model
 {
+    use Searchable;
+
     protected $fillable = [
         'uuid',
         'title',
