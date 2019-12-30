@@ -24,6 +24,12 @@
 	import DashboardSnippetCard from "./components/DashboardSnippetCard";
 
 	export default {
+		head() {
+			return {
+				title: 'Dashboard',
+			}
+		},
+
 		data() {
 			return {
 				snippets: []

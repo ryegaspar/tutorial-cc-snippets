@@ -25,6 +25,12 @@
 	import BrowseSnippetCard from "./components/BrowseSnippetCard";
 
 	export default {
+		head() {
+			return {
+				title: 'Browse',
+			}
+		},
+
 		data() {
 			return {
 				snippets: []
