@@ -55,7 +55,7 @@
 				this.$router.push({
 					name: 'snippets-id-edit',
 					params: {
-						id: snippet.data.uid
+						id: snippet.data.uuid
 					}
 				})
 			},

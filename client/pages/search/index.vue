@@ -81,7 +81,8 @@
 
 			return instantsearch
 				.findResultsState({
-					hitsPerPage: 20
+					hitsPerPage: 20,
+					// filters: 'data.is_public = 1' // better to use secured api with the filter included
 				})
 				.then(() => {
 					return {

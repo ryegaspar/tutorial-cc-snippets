@@ -22,3 +22,8 @@ Route::group(['prefix' => 'me', 'namespace' => 'Me'], function () {
     Route::get('snippets', 'SnippetController@index');
 });
 
+Route::group(['prefix' => 'keys', 'namespace' => 'Keys'], function () {
+    Route::get('algolia', 'AlgoliaKeyController');
+});
+
+
