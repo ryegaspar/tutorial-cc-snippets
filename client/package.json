@@ -1,31 +1,31 @@
 {
-  "name": "client",
-  "version": "1.0.0",
-  "description": "My incredible Nuxt.js project",
-  "author": "rye gaspar",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
-  },
-  "dependencies": {
-    "@nuxtjs/auth": "^4.8.4",
-    "@nuxtjs/axios": "^5.3.6",
-    "algoliasearch": "^3.35.1",
-    "codemirror": "^5.49.2",
-    "dotenv": "^8.2.0",
-    "highlight.js": "^9.17.1",
-    "hotkeys-js": "^3.7.3",
-    "markdown-it": "^10.0.0",
-    "moment": "^2.24.0",
-    "node-sass": "^4.13.0",
-    "nuxt": "^2.0.0",
-    "sass-loader": "^8.0.0",
-    "tailwindcss": "^1.1.4",
-    "tailwindcss-transforms": "^2.2.0",
-    "vue-instantsearch": "^2.6.0"
-  },
-  "devDependencies": {}
+	"name": "client",
+	"version": "1.0.0",
+	"description": "My incredible Nuxt.js project",
+	"author": "rye gaspar",
+	"private": true,
+	"scripts": {
+		"dev": "nuxt",
+		"build": "nuxt build",
+		"start": "nuxt start",
+		"generate": "nuxt generate"
+	},
+	"dependencies": {
+		"@nuxtjs/auth": "^4.8.4",
+		"@nuxtjs/axios": "^5.3.6",
+		"algoliasearch": "^3.35.1",
+		"codemirror": "^5.49.2",
+		"dotenv": "^8.2.0",
+		"highlight.js": "^9.17.1",
+		"hotkeys-js": "^3.7.3",
+		"markdown-it": "^10.0.0",
+		"moment": "^2.24.0",
+		"node-sass": "^4.13.0",
+		"nuxt": "^2.0.0",
+		"sass-loader": "^8.0.0",
+		"tailwindcss": "^1.1.4",
+		"tailwindcss-transforms": "^2.2.0",
+		"vue-instantsearch": "^2.6.0"
+	},
+	"devDependencies": {}
 }

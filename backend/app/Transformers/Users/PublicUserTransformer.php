@@ -16,9 +16,10 @@ class PublicUserTransformer extends TransformerAbstract
     public function transform(User $user)
     {
         return [
-            'id'     => $user->id,
-            'name'   => $user->name,
-            'joined' => $user->created_at->toDateTimeString(),
+            'id'       => $user->id,
+            'name'     => $user->name,
+            'username' => $user->username,
+            'joined'   => $user->created_at->toDateTimeString(),
         ];
     }
 }
