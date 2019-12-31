@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Policies\SnippetPolicy;
 use App\Policies\StepPolicy;
+use App\Policies\UserPolicy;
 use App\Snippet;
 use App\Step;
+use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -19,7 +21,8 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
         Snippet::class => SnippetPolicy::class,
-        Step::class => StepPolicy::class
+        Step::class    => StepPolicy::class,
+        User::class    => UserPolicy::class,
     ];
 
     /**
