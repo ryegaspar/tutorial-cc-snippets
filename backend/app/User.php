@@ -55,6 +55,11 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
     public function snippets()
     {
         return $this->hasMany(Snippet::class)
