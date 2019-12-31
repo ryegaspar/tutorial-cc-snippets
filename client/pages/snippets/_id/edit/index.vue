@@ -202,6 +202,10 @@
 			}
 		},
 
+		middleware: [
+			'auth'
+		],
+
 		computed: {
 			lastSavedFormatted() {
 				return moment(this.lastSaved).format('hh:mm:ss');

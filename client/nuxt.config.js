@@ -54,6 +54,9 @@ export default {
 	},
 
 	auth: {
+		redirect: {
+			login: '/auth/signin'
+		},
 		strategies: {
 			local: {
 				endpoints: {

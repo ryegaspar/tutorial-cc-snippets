@@ -48,6 +48,10 @@
 			DashboardSnippetCard
 		},
 
+		middleware: [
+			'auth'
+		],
+
 		methods: {
 			async createSnippet() {
 				let snippet = await this.$axios.$post('snippets');
@@ -64,6 +68,5 @@
 				this.snippets = this.snippets.filter((s) => s.uuid !== snippet.uuid);
 			}
 		}
-
 	}
 </script>
