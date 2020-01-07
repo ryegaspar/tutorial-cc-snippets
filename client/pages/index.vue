@@ -13,7 +13,7 @@
 					<nuxt-link :to="{
 									name: 'snippets-id',
 									params: {
-										id: 'b7458ed9-eb8b-4fe2-9db7-51a654088863'
+										id: SNIPPET_EXAMPLE_UUID
 									}
 								}"
 							   class="inline-block text-lg py-3 px-5 bg-blue-500 text-white rounded-lg"
@@ -53,7 +53,8 @@
 
 		data() {
 			return {
-				snippets: []
+				snippets: [],
+				SNIPPET_EXAMPLE_UUID: process.env.SNIPPET_EXAMPLE_UUID
 			}
 		},
 
