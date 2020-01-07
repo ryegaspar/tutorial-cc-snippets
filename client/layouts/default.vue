@@ -1,16 +1,19 @@
 <template>
 	<div>
-		<the-navigation></the-navigation>
+		<the-navigation/>
 		<nuxt/>
+		<the-footer />
 	</div>
 </template>
 
 <script>
 	import TheNavigation from "@/components/global/TheNavigation";
+	import TheFooter from "@/components/global/TheFooter";
 
 	export default {
 		components: {
-			TheNavigation
+			TheNavigation,
+			TheFooter
 		}
 	}
 </script>
