@@ -22,7 +22,7 @@ class SnippetController extends Controller
     {
         return fractal()
             ->collection(
-                Snippet::take($request->get('limit', 10))->latest()->public()->get()
+                Snippet::take($request->get('limit', 20))->latest()->public()->get()
             )
             ->transformWith(new SnippetTransformer())
             ->parseIncludes([
