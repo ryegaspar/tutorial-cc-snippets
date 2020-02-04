@@ -144,7 +144,8 @@
 			async submit() {
 				try {
 					await this.$axios.$patch(`users/${this.$auth.user.username}`, this.form)
-					await this.$auth.fetchUser()
+					await this.$auth.fetchUser();
+					this.form.password = '';
 				} catch (e) {
 					if (e.response.status === 422) {
 						this.validation = e.response.data.errors
