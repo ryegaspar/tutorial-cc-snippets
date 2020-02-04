@@ -12,9 +12,14 @@
 					>
 					<div class="text-gray-600">
 						Created by
-						<nuxt-link :to="{}"
+						<nuxt-link :to="{
+								name: 'author-id',
+								params: {
+									id: snippet.author.data.username
+								}
+							}"
 						>
-							Danni
+							{{ snippet.author.data.name }}
 						</nuxt-link>
 					</div>
 				</div>

@@ -57,7 +57,7 @@
 
 			<div class="text-center text-gray-600">
 				No account?
-				<nuxt-link :to="{name: 'index'}">
+				<nuxt-link :to="{name: 'auth-signup'}">
 					Create one here
 				</nuxt-link>
 			</div>

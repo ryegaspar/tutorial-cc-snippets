@@ -120,9 +120,9 @@
 			</form>
 
 			<div class="text-center text-gray-600">
-				No account?
-				<nuxt-link :to="{name: 'index'}">
-					Create one here
+				Already got an account
+				<nuxt-link :to="{name: 'auth-signin'}">
+					Sign in here
 				</nuxt-link>
 			</div>
 		</div>
